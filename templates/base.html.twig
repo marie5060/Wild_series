@@ -13,7 +13,13 @@
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
     </head>
-    <body>
+
+    <body class="bg-primary">   
+        <header>
+            {% block navbar %}
+                 {% include 'component/_navbar.html.twig' %}
+            {% endblock %}
+        </header>
         {% block body %}{% endblock %}
     </body>
 </html>
