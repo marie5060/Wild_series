@@ -10,7 +10,7 @@ use Doctrine\Persistence\ObjectManager;
 class CategoryFixtures extends Fixture
 {
 
-    const CATEGORIES = [
+    public const CATEGORIES = [
         "Action",
         "Aventure",
         "Animation",
@@ -26,6 +26,8 @@ class CategoryFixtures extends Fixture
         $category->setName( $categoryName);
         //la persistance en base de données
         $manager->persist($category);
+        //référence pour chaque catégorie
+        $this->addReference('category_' . $categoryName, $category);
     }
         $manager->flush();
     }
