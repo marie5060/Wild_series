@@ -14,7 +14,8 @@ class CategoryFixtures extends Fixture
         "Action",
         "Aventure",
         "Animation",
-        "Fantastique"
+        "Fantastique", 
+        "Horreur"
     ];
     //la méthode load qui est appelée lors du chargement des fixtures
     public function load(ObjectManager $manager)

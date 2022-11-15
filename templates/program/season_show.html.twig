@@ -1,6 +1,5 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Série #{{ program.id }}{% endblock %}
 
 {% block body %}
     <div class="media">
@@ -10,14 +9,14 @@
             <p>{{ program.synopsis }}</p>
             <p>Catégorie : {{ program.category.name }}</p>
         </div>
-        {% for season in seasons %}
+        {% for episode in episodes %}
             <div class="row mx-auto">
                 <div class="col-12 mt-2">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title">{{ season.id }} / {{season.number }}</h5>
-                            <p class="card-text text-dark mb-5">{{ season.description }}</p>
-                            <a href="{{ path("program_season_show", { seasonId:season.id , programId: program.id }) }}">Voir la fiche saison</a>
+                            <h5 class="card-title">{{ episode.id }} / {{episode.number }}</h5>
+                            <p class="card-text text-dark mb-5">{{ episode.synopsis }}</p>
+                            <a >Voir la fiche episode</a>
 
                          </div>
                     </div>
@@ -25,7 +24,7 @@
             </div>
         {% else %}
             
-            <h2>Aucune série trouvée.</h2>
+            <h2>Aucun épisode trouvé.</h2>
         {% endfor %}
 
 
@@ -34,4 +33,9 @@
     <a href="{{ path('program_index') }}">
         Retour à la liste des programmes
     </a>
+
+
+
+
+
 {% endblock %}

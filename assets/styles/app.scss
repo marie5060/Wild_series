@@ -1,3 +1,5 @@
-$primary: rgb(68, 106, 175);
+body {
+    background-color: rgb(41, 41, 59);
+}
 // the ~ allows you to reference things in node_modules
 @import "~bootstrap/scss/bootstrap";
