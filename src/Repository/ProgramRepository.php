@@ -21,6 +21,15 @@ class ProgramRepository extends ServiceEntityRepository
         parent::__construct($registry, Program::class);
     }
 
+    public function add(Program $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function save(Program $entity, bool $flush = false): void
     {
         $this->getEntityManager()->persist($entity);
