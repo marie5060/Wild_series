@@ -17,7 +17,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ season.id }} / {{season.number }}</h5>
                             <p class="card-text text-dark mb-5">{{ season.description }}</p>
-                            <a href="{{ path("program_season_show", { seasonId:season.id , programId: program.id }) }}">Voir la fiche saison</a>
+                            <a href="{{ path("program_season_show", { season:season.id , program: program.id }) }}">Voir la fiche saison</a>
 
                          </div>
                     </div>

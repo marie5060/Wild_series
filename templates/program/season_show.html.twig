@@ -16,7 +16,7 @@
                         <div class="card-body">
                             <h5 class="card-title">{{ episode.id }} / {{episode.number }}</h5>
                             <p class="card-text text-dark mb-5">{{ episode.synopsis }}</p>
-                            <a >Voir la fiche episode</a>
+                            <a href="{{ path('program_episode_show', { program: program.id, season: season.id, episode: episode.id }) }}">Voir la fiche episode</a>
 
                          </div>
                     </div>
