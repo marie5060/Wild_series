@@ -7,8 +7,13 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 #[ORM\Entity(repositoryClass: ProgramRepository::class)]
+#[UniqueEntity('title')]
+
 class Program
 {
     #[ORM\Id]
@@ -16,16 +21,21 @@ class Program
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
+    #[ORM\Column( name:'title',type: 'string',length: 255)]
+    #[Assert\NotBlank(message: 'Ne me laisse pas tout vide')]
+    #[Assert\Length(max: 255,maxMessage: 'La catégorie saisie {{ value }} est trop longue, elle ne devrait pas dépasser {{ limit }} caractères',)]
+    private $title;
 
     #[ORM\Column(type: Types::TEXT)]
-    private ?string $synopsis = null;
+    #[Assert\NotBlank(message: 'Ne me laisse pas tout vide')]
+    #[Assert\Regex(pattern: '/([pP]lus belle la vie)/',match: false,message: 'On parle de vrai series ici !')]
+    private ?string $synopsis  = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $poster = null;
 
     #[ORM\ManyToOne(targetEntity: Category::class, inversedBy: 'programs')]
+    #[ORM\JoinColumn(nullable: false)]
     private $category;
 
     #[ORM\JoinColumn(nullable: false)]
@@ -38,9 +48,6 @@ class Program
     {
         $this->seasons = new ArrayCollection();
     }
-    #[ORM\JoinColumn]
-    // private ?Category $category = null;
-
 
     public function getId(): ?int
     {

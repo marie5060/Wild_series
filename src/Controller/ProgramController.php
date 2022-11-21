@@ -38,7 +38,7 @@ class ProgramController extends AbstractController
         // Get data from HTTP request
         $form->handleRequest($request);
         // Was the form submitted ?
-        if ($form->isSubmitted()) {
+        if ($form->isSubmitted()&& $form->isValid()) {
             // Deal with the submitted data
             // For example : persiste & flush the entity
             // And redirect to a route that display the result
@@ -54,18 +54,17 @@ class ProgramController extends AbstractController
     }
 
     #[Route('/{program}',methods: ['GET'], name: 'show')]
-    public function show(Program $program, SeasonRepository $seasonRepository ):Response
+    public function show(Program $program ):Response
     {
         // $program = $programRepository->findOneBy(['id' => $id]);
         // same as $program = $programRepository->find($id);
     
-        $seasons = $seasonRepository->findBy(['program'=> $program]);
+        // $seasons = $seasonRepository->findBy(['program'=> $program]);
         // dump($seasons);
 
         return $this->render('program/show.html.twig', [
-            'program' => $program, 'seasons' => $seasons
-        ]);
-    }
+            'program' => $program]);
+            }
 
     #[Route('/{program}/season/{season}', name: 'season_show')]
     public function showSeason( Program $program, Season $season, EpisodeRepository $episodeRepository ) :Response 

@@ -17,9 +17,11 @@ class EpisodeFixtures extends Fixture implements DependentFixtureInterface
         
         $faker = Factory::create();
 
-        
+        //program
         for ($p=1 ; $p <= 5 ; $p++){
+            //season
             for ($i = 1 ; $i <=5; $i++) {
+                //episode
                 for ($j=1; $j<= 10; $j++){
         
                     $episode = new Episode();

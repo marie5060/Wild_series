@@ -10,7 +10,7 @@
             <p>{{ program.synopsis }}</p>
             <p>Catégorie : {{ program.category.name }}</p>
         </div>
-        {% for season in seasons %}
+        {% for season in program.seasons %}
             <div class="row mx-auto">
                 <div class="col-12 mt-2">
                     <div class="card">
